@@ -2,26 +2,124 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lai AI - Chatbot</title>
-    <link rel="stylesheet" href="styles.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Lai - AI Chatbot</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@1/css/pico.min.css">
+    <style>
+        body {
+            background-color: #f9f9f9;
+        }
+        .chatbox {
+            border: 1px solid #ddd;
+            padding: 1rem;
+            border-radius: 10px;
+            height: 300px;
+            overflow-y: auto;
+            background: #fff;
+        }
+        .chat-input {
+            display: flex;
+            gap: 0.5rem;
+        }
+        .chat-input input {
+            flex: 1;
+        }
+        .hero {
+            text-align: center;
+            padding: 3rem 1rem;
+        }
+    </style>
 </head>
 <body>
-    <div class="container">
-        <header>
-            <h1>Lai - The Smart AI</h1>
-        </header>
 
-        <div class="chat-box" id="chat-box">
-            <!-- Chat messages will be displayed here -->
+    <!-- Navigation -->
+    <nav class="container-fluid">
+        <ul>
+            <li><strong>Lai AI</strong></li>
+        </ul>
+        <ul>
+            <li><a href="#">Home</a></li>
+            <li><a href="#chat">Chat</a></li>
+            <li><a href="#contact" role="button">Contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="container">
+        <div class="grid">
+
+            <!-- Hero Section -->
+            <section class="hero">
+                <hgroup>
+                    <h2>Meet Lai AI</h2>
+                    <h3>Your Smart AI Assistant</h3>
+                </hgroup>
+                <p>Lai is designed to assist you in conversations, answer questions, and provide helpful insights.</p>
+                <figure>
+                    <img src="https://source.unsplash.com/800x400/?technology,ai" alt="AI Concept">
+                    <figcaption>Image from <a href="https://unsplash.com" target="_blank">Unsplash</a></figcaption>
+                </figure>
+            </section>
+
+            <!-- Chatbot Section -->
+            <section id="chat">
+                <h3>Chat with Lai</h3>
+                <div class="chatbox" id="chatbox">
+                    <p><strong>Lai:</strong> Hello! How can I assist you today?</p>
+                </div>
+                <div class="chat-input">
+                    <input type="text" id="userInput" placeholder="Type a message..." aria-label="Chat input">
+                    <button onclick="sendMessage()">Send</button>
+                </div>
+            </section>
+
         </div>
+    </main>
 
-        <div class="input-area">
-            <input type="text" id="user-input" placeholder="Ask me anything..." autofocus />
-            <button onclick="sendMessage()">Send</button>
+    <!-- Contact Form -->
+    <section id="contact" aria-label="Contact Lai">
+        <div class="container">
+            <article>
+                <hgroup>
+                    <h2>Contact Us</h2>
+                    <h3>We'd love to hear from you</h3>
+                </hgroup>
+                <form class="grid">
+                    <input type="text" id="name" name="name" placeholder="Your Name" aria-label="Name" required>
+                    <input type="email" id="email" name="email" placeholder="Your Email" aria-label="Email" required>
+                    <button type="submit" onclick="event.preventDefault()">Submit</button>
+                </form>
+            </article>
         </div>
-    </div>
+    </section>
 
-    <script src="script.js"></script>
+    <!-- Footer -->
+    <footer class="container">
+        <small>
+            <a href="#">Privacy Policy</a> • <a href="#">Terms of Service</a>
+        </small>
+    </footer>
+
+    <!-- Simple Chatbot Script -->
+    <script>
+        function sendMessage() {
+            let userInput = document.getElementById(\"userInput\").value;
+            let chatbox = document.getElementById(\"chatbox\");
+            if (userInput.trim() === \"\") return;
+            
+            // Append user message
+            chatbox.innerHTML += `<p><strong>You:</strong> ${userInput}</p>`;
+            
+            // Simulate AI response
+            setTimeout(() => {
+                chatbox.innerHTML += `<p><strong>Lai:</strong> I'm still learning! Stay tuned for smarter responses.</p>`;
+                chatbox.scrollTop = chatbox.scrollHeight;
+            }, 1000);
+            
+            document.getElementById(\"userInput\").value = \"\";
+        }
+    </script>
+
 </body>
 </html>
+
